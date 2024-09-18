@@ -1,5 +1,5 @@
-import React, { memo, useState } from 'react';
-import dynamic from 'next/dynamic'
+import React, { memo, useState } from "react";
+import dynamic from "next/dynamic"
 import { motion, useAnimation, useInView, AnimatePresence, useScroll } from "framer-motion"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
@@ -7,31 +7,31 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Skill } from '@/types'
-import { Playfair_Display, Montserrat } from 'next/font/google'
-import { Instagram, Twitter,Send,Linkedin } from 'lucide-react';
-import { portfolioItems, musicLinks } from './PortfolioData';
-import AnimatedLogo from './AnimatedLogo';
-import { SKILLS } from '@/constants'
-import AboutModal from './AboutModal';
-import VimeoVideo from './VimeoVideo';
-import WebProjectItem from './WebProjectItem';
-import ResponsiveTabs from './ResponsiveTabs';
-import P5Sketch from './P5Sketch'; 
-import MusicPlayer from './MusicPlayer';
+import { Skill } from "@/types"
+import { Playfair_Display, Montserrat } from "next/font/google"
+import { Instagram, Twitter,Send,Linkedin } from "lucide-react";
+import { portfolioItems, musicLinks } from "./PortfolioData";
+import AnimatedLogo from "./AnimatedLogo";
+import { SKILLS } from "@/constants"
+import AboutModal from "./AboutModal";
+import VimeoVideo from "./VimeoVideo";
+import WebProjectItem from "./WebProjectItem";
+import ResponsiveTabs from "./ResponsiveTabs";
+import P5Sketch from "./P5Sketch"; 
+import MusicPlayer from "./MusicPlayer";
 
 
 
 // Importaciones dinámicas para componentes pesados
-const InteractiveBackground_2 = dynamic(() => import('./InteractiveBackground_2'), { ssr: false })
-const TechCarousel = dynamic(() => import('./TechCarousel'), { ssr: false })
-const RotatingCube_2 = dynamic(() => import('./RotatingCube_2'), { ssr: false })
-const SkillModal = dynamic(() => import('./SkillModal'))
-const SectionDivider = dynamic (() => import('./SectionDivider')) 
-const AnimatedText = dynamic (() => import('./AnimatedText')) 
-const AnimatedTitle = dynamic (() => import('./AnimatedTitle')) 
-const AnimatedSection = dynamic (() => import('./AnimatedSection'))
-const AnimatedLines = dynamic (() => import('./AnimatedLines'))
+const InteractiveBackground_2 = dynamic(() => import("./InteractiveBackground_2"), { ssr: false })
+const TechCarousel = dynamic(() => import("./TechCarousel"), { ssr: false })
+const RotatingCube_2 = dynamic(() => import("./RotatingCube_2"), { ssr: false })
+const SkillModal = dynamic(() => import("./SkillModal"))
+const SectionDivider = dynamic (() => import("./SectionDivider")) 
+const AnimatedText = dynamic (() => import("./AnimatedText")) 
+const AnimatedTitle = dynamic (() => import("./AnimatedTitle")) 
+const AnimatedSection = dynamic (() => import("./AnimatedSection"))
+const AnimatedLines = dynamic (() => import("./AnimatedLines"))
 
 
 
@@ -41,11 +41,11 @@ const AnimatedLines = dynamic (() => import('./AnimatedLines'))
 
 
 const playfair = Playfair_Display({ 
-  weight: ['400', '700'],
-  subsets: ['latin'],
-  display: 'swap',
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  display: "swap",
 })
-const montserrat = Montserrat({ subsets: ['latin'], display: 'swap' })
+const montserrat = Montserrat({ subsets: ["latin"], display: "swap" })
 
 
 const ScrollIndicator = () => (
@@ -146,13 +146,13 @@ interface PortfolioPagePresentationProps {
             className="fixed top-0 left-0 right-0 h-1 bg-yellow-400 bg-opacity-80"
             style={{ 
               scaleX: scrollYProgress,
-              position: 'fixed',
+              position: "fixed",
               top: 0,
               left: 0,
               right: 0,
-              height: '5px',
-              background: 'bg-gray-800',
-              transformOrigin: '50%',
+              height: "5px",
+              background: "bg-gray-800",
+              transformOrigin: "50%",
               zIndex: 9999
             }}
           />
@@ -201,7 +201,7 @@ interface PortfolioPagePresentationProps {
       </header>
 
       <main id="main-content" className="flex-1 pt-16 relative bg-gray-900 bg-opacity-10 z-10">
-        <h1 className="sr-only">Pagina de D'Xolot</h1>
+        <h1 className="sr-only">Pagina de D"Xolot</h1>
        
         <div className="absolute top-80 left-8 w-full flex mb-2">
         <AnimatedLines />
@@ -254,7 +254,7 @@ interface PortfolioPagePresentationProps {
 >
   <motion.div
   >
-    <RotatingCube_2 className='items-center space-y-4 sm:space-y-0 sm:space-x-8' />
+    <RotatingCube_2 className="items-center space-y-4 sm:space-y-0 sm:space-x-8" />
   </motion.div>
 </motion.div>
   
@@ -283,7 +283,7 @@ interface PortfolioPagePresentationProps {
   >
    
    <AnimatedText 
-                text={'01'}
+                text={"01"}
                 className="text-xl text-gray-200 text-center font-mono"
               />
   
@@ -444,7 +444,7 @@ interface PortfolioPagePresentationProps {
         <Card className="h-full bg-navy-800 hover:bg-navy-900 transition-colors duration-300 bg-opacity-70 cursor-pointer border border-blue-500/20">
                   <CardContent className="flex flex-col items-center justify-between p-6 h-full">
                 <motion.div
-                className='mb-4'
+                className="mb-4"
                         animate={{
                           scale: [1, 1.2, 1],
                           transition: {
