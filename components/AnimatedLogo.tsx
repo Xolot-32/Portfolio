@@ -12,7 +12,7 @@ const AnimatedLogo: React.FC = () => {
       initial="hidden"
       animate="visible"
       className="w-full h-full"
-    >
+    > 
       <g transform="translate(-91.423882,-253.5866)">
         {/* Parte superior (blanca) */}
         <motion.path

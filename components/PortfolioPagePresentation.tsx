@@ -253,13 +253,10 @@ interface PortfolioPagePresentationProps {
   }}
 >
   <motion.div
-
   >
     <RotatingCube_2 className='items-center space-y-4 sm:space-y-0 sm:space-x-8' />
   </motion.div>
 </motion.div>
-  
-
   
   <motion.div 
     className="absolute top-10 left-8 text-4xl"
@@ -532,7 +529,6 @@ interface PortfolioPagePresentationProps {
               ))}
             </div>
           </TabsContent>
-
           <TabsContent value="soundDesign">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {portfolioItems.soundDesign.map((item, index) => (
