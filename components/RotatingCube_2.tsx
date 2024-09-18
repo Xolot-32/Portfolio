@@ -69,7 +69,7 @@ function RotatingBox() {
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: visible ? 1 : 0, opacity: visible ? 1 : 0 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
-        position={[0, 0.5, 0]}
+        position={[0, 0.2, 0]}
       >
         <mesh castShadow receiveShadow>
           <boxGeometry args={[1.5, 1.5, 1.5]} />

@@ -255,7 +255,7 @@ interface PortfolioPagePresentationProps {
 >
   <motion.div
   >
-    <RotatingCube_2 className="items-center space-y-4 sm:space-y-0 sm:space-x-8" />
+    <RotatingCube_2  />
   </motion.div>
 </motion.div>
   
@@ -389,7 +389,7 @@ interface PortfolioPagePresentationProps {
 
 
 
-<AnimatedLines />
+
 <motion.section
           id="skills"
           className="w-full min-h-screen flex items-center backdrop-blur-sm justify-center py-24 md:py-24 lg:py-32 relative overflow-hidden"
@@ -492,7 +492,7 @@ interface PortfolioPagePresentationProps {
  filter="invert(90%) contrast(200%) brightness(100%) hue-rotate(66deg)" />
 
 
-<AnimatedLines />
+
 <motion.section
       id="portfolio"
       className="w-full min-h-screen flex items-center backdrop-blur-sm justify-center py-24 md:py-24 lg:py-32 relative overflow-hidden"
@@ -584,7 +584,7 @@ interface PortfolioPagePresentationProps {
       </div>
     </motion.section>
 <SectionDivider filter="invert(90%) contrast(200%) brightness(100%) hue-rotate(66deg)" />
-<AnimatedLines />
+
         <motion.section
          id="technologies"
          className="w-full min-h-screen flex items-center backdrop-blur-sm justify-center py-24 md:py-24 lg:py-32 relative overflow-hidden"
@@ -614,7 +614,7 @@ interface PortfolioPagePresentationProps {
       </motion.section>
       
       <SectionDivider filter="invert(90%) contrast(200%) brightness(100%) hue-rotate(66deg)" />
-      <AnimatedLines />
+      
 
         <motion.section
   id="contact"
