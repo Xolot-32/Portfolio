@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 
 interface Line {
@@ -27,42 +27,44 @@ const AnimatedLines: React.FC = () => {
   const controls = useAnimation();
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    function updateDimensions() {
-      setDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
-    }
+  const updateDimensions = useCallback(() => {
+    setDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+  }, []);
 
+  useEffect(() => {
     window.addEventListener('resize', updateDimensions);
     updateDimensions();
 
     return () => window.removeEventListener('resize', updateDimensions);
+  }, [updateDimensions]);
+
+  const createLines = useCallback((width: number, height: number) => {
+    const newLines: Line[] = [];
+    const gridSize = 50;
+    
+    for (let y = 0; y < height; y += gridSize) {
+      newLines.push({ x1: 0, y1: y, x2: width, y2: y });
+    }
+    
+    for (let x = 0; x < width; x += gridSize) {
+      newLines.push({ x1: x, y1: 0, x2: x, y2: height });
+    }
+    
+    return newLines;
   }, []);
 
   useEffect(() => {
     if (dimensions.width && dimensions.height) {
-      const newLines: Line[] = [];
-      const gridSize = 50;
-      
-      // Líneas horizontales
-      for (let y = 0; y < dimensions.height; y += gridSize) {
-        newLines.push({ x1: 0, y1: y, x2: dimensions.width, y2: y });
-      }
-      
-      // Líneas verticales
-      for (let x = 0; x < dimensions.width; x += gridSize) {
-        newLines.push({ x1: x, y1: 0, x2: x, y2: dimensions.height });
-      }
-      
-      setLines(newLines);
+      setLines(createLines(dimensions.width, dimensions.height));
       setIsReady(true);
     }
-  }, [dimensions]);
+  }, [dimensions, createLines]);
 
   useEffect(() => {
-    if (!isReady) return;
+    if (!isReady || !ref.current) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -79,14 +81,10 @@ const AnimatedLines: React.FC = () => {
       }
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    observer.observe(ref.current);
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
+      observer.disconnect();
     };
   }, [controls, isReady]);
 

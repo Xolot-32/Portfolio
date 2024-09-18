@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
@@ -14,35 +14,36 @@ interface TechGridProps {
 
 export default function TechGrid({ technologies }: TechGridProps) {
   const [currentPage, setCurrentPage] = useState(0)
+  const [currentItemsPerPage, setCurrentItemsPerPage] = useState(12) // Default to desktop
+
   const itemsPerPage = {
     mobile: 4,
     tablet: 6,
     desktop: 12
   }
   
-  const getItemsPerPage = () => {
+  const getItemsPerPage = useCallback(() => {
     if (typeof window !== 'undefined') {
       if (window.innerWidth < 640) return itemsPerPage.mobile
       if (window.innerWidth < 1024) return itemsPerPage.tablet
       return itemsPerPage.desktop
     }
     return itemsPerPage.desktop
-  }
-
-  const [currentItemsPerPage, setCurrentItemsPerPage] = useState(getItemsPerPage())
+  }, [])
 
   useEffect(() => {
     const handleResize = () => {
       setCurrentItemsPerPage(getItemsPerPage())
     }
 
+    handleResize() // Set initial value
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, [])
+  }, [getItemsPerPage])
 
   const totalPages = Math.ceil(technologies.length / currentItemsPerPage)
 
-  const handlePagination = (direction: 'left' | 'right') => {
+  const handlePagination = useCallback((direction: 'left' | 'right') => {
     setCurrentPage(prev => {
       if (direction === 'left') {
         return Math.max(prev - 1, 0)
@@ -50,7 +51,7 @@ export default function TechGrid({ technologies }: TechGridProps) {
         return Math.min(prev + 1, totalPages - 1)
       }
     })
-  }
+  }, [totalPages])
 
   const visibleTechnologies = technologies.slice(
     currentPage * currentItemsPerPage,
@@ -69,7 +70,6 @@ export default function TechGrid({ technologies }: TechGridProps) {
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"
         >
           {visibleTechnologies.map((tech) => (
-            
             <motion.div
               key={tech.name}
               className="flex flex-col items-center justify-center p-4 bg-navy-800 rounded-lg shadow-md"
@@ -78,7 +78,7 @@ export default function TechGrid({ technologies }: TechGridProps) {
               animate={{ opacity: 0.8, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.3 }}
-           >
+            >
               <div className="relative w-16 h-16 mb-2 z-10">
                 <Image
                   src={tech.icon}

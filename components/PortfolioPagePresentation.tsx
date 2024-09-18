@@ -201,7 +201,7 @@ interface PortfolioPagePresentationProps {
       </header>
 
       <main id="main-content" className="flex-1 pt-16 relative bg-gray-900 bg-opacity-10 z-10">
-        <h1 className="sr-only">Pagina de D"Xolot</h1>
+        <h1 className="sr-only">Pagina de Daniel Xolot</h1>
        
         <div className="absolute top-80 left-8 w-full flex mb-2">
         <AnimatedLines />
