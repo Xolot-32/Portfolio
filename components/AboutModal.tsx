@@ -15,7 +15,7 @@ const AboutModal: React.FC<AboutModalProps> = ({ onClose }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 bg-navy-950 bg-opacity-95 backdrop-blur-lg flex items-center justify-center z-50"
+      className="fixed inset-0 bg-navy-950 bg-opacity-95 backdrop-blur-lg flex items-center justify-center z-20"
       onClick={onClose}
     >
       <motion.div
@@ -35,25 +35,22 @@ const AboutModal: React.FC<AboutModalProps> = ({ onClose }) => {
             <X className="h-6 w-6" />
           </Button>
           
-          <div className="flex flex-col items-center mb-4">
+          <div className="flex flex-col items-center mb-1">
             <Image
               src="/perfil.png"
               alt="Tu Nombre"
-              width={120}
-              height={120}
-              className="rounded-full mb-1 border-4 border-yellow-400"
+              width={80}
+              height={80}
+              className="rounded-full mb-1 border-2 border-yellow-400"
             />
             <AnimatedText
               text="Luis Daniel Duran Xolot"
-              className="text-3xl font-serif text-white mb-2"
+              className="text-2xl font-serif text-white mb-1"
             />
-            <AnimatedText
-              text="ACERCA DE MI"
-              className="text-sm font-sans tracking-widest text-yellow-400"
-            />
+         
           </div>
           
-          <div className="space-y-4 text-gray-300">
+          <div className="space-y-1 text-gray-300">
           
       
             <p className="leading-relaxed">
@@ -63,24 +60,21 @@ const AboutModal: React.FC<AboutModalProps> = ({ onClose }) => {
               />
              
 
-              <ul className="list-disc list-inside space-y-1 pl-3">
+              <ul className="list-disc list-inside space-y-1 pl-1">
               <p className="leading-relaxed"></p>
                 <li><AnimatedText text="Control de calidad de contenido multimedia." /></li>
                 <li><AnimatedText text="Programación de aplicaciones móviles, web y de escritorio." /></li>
-                <li><AnimatedText text="Uso e investigación de nuevos desarrollos en inteligencia artificial." /></li>
                 <li><AnimatedText text="Participación en eventos internacionales de ciencia, tecnología y arte." /></li>
                 <li><AnimatedText text="Producción, grabación, edición y mezcla de audio." /></li>
-                
-             
               </ul>
             </p>
             <p className="leading-relaxed">
               <AnimatedText
                 text="Actualmente, mi enfoque principal es:"
-                className="font-medium text-gray-200 mb-2"
+                className="font-medium text-gray-200 mb-1"
               />
               
-              <ul className="list-disc list-inside space-y-2 pl-4">
+              <ul className="list-disc list-inside space-y-1 pl-1">
               <p className="leading-relaxed"></p>
                 
                 <li><AnimatedText text="Investigación y desarrollo sobre el uso responsable de inteligencia artificial en proyectos multimedia." /></li>

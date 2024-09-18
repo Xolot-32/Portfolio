@@ -50,23 +50,33 @@ const playfair = Playfair_Display({
 const montserrat = Montserrat({ subsets: ["latin"], display: "swap" })
 
 
-const ScrollIndicator = () => (
-  <motion.div
-    className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-    animate={{
-      y: [0, 10, 0],
-    }}
-    transition={{
-      duration: 1.5,
-      repeat: Infinity,
-      ease: "easeInOut",
-    }}
-  >
-    <div className="w-6 h-10 border-2 border-white rounded-full p-1">
-      <div className="w-1 h-3 bg-white rounded-full mx-auto" />
-    </div>
-  </motion.div>
-);
+const ScrollIndicator = () => {
+  const handleClick = () => {
+    window.scrollBy({
+      top: window.innerHeight, // Desplazarse hacia abajo una pantalla completa
+      behavior: 'smooth', // Desplazamiento suave
+    });
+  };
+
+  return (
+    <motion.div
+      className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer" // Agrega cursor-pointer para indicar que es clickable
+      onClick={handleClick} // Manejador de clic
+      animate={{
+        y: [0, 10, 0],
+      }}
+      transition={{
+        duration: 1.5,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    >
+      <div className="w-6 h-10 border-2 border-white rounded-full p-1">
+        <div className="w-1 h-3 bg-white rounded-full mx-auto" />
+      </div>
+    </motion.div>
+  );
+};
 
 
 interface PortfolioPagePresentationProps {
@@ -165,9 +175,11 @@ interface PortfolioPagePresentationProps {
       </AnimatePresence>
     <div className="fixed flex flex-col min-h-screen inset-0 z-0 w-full h-full overflow-hidden">
       
-      {/* aqui van los fondos animados */}
+      {/* 
+         <InteractiveBackground_2/>
+      */}
     
-      <InteractiveBackground_2/>
+   
       
       </div>
       
@@ -447,10 +459,10 @@ interface PortfolioPagePresentationProps {
                 <motion.div
                 className="mb-4"
                         animate={{
-                          scale: [1, 1.2, 1],
+                          scale: [1, 1.1, 1],
                           transition: {
                             duration: 2,
-                            repeat: 3,
+                            repeat: Infinity,
                             repeatType: "reverse",
                           },
                         }}
