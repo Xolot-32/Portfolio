@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+
 import React, { memo, useState } from "react";
 import dynamic from "next/dynamic"
 import { motion, useAnimation, useInView, AnimatePresence, useScroll } from "framer-motion"
@@ -202,6 +204,7 @@ interface PortfolioPagePresentationProps {
 
       <main id="main-content" className="flex-1 pt-16 relative bg-gray-900 bg-opacity-10 z-10">
         <div className="absolute top-80 left-8 w-full flex mb-2">
+        
         <AnimatedLines />
    
   </div>
