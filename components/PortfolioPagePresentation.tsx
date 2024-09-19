@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 
-import React, { memo, useState } from "react";
+import React, { memo, useState, useEffect } from "react";
 import dynamic from "next/dynamic"
 import { motion, useAnimation, useInView, AnimatePresence, useScroll } from "framer-motion"
 import Link from "next/link"
@@ -31,6 +31,7 @@ const RotatingCube_2 = dynamic(() => import('./RotatingCube_2'), {
   ssr: false,
   loading: () => <p>Cargando...</p>
 });
+
 const RotatingCube = dynamic(() => import("./RotatingCube"), { ssr: false })
 const SkillModal = dynamic(() => import("./SkillModal"))
 const AnimatedText = dynamic (() => import("./AnimatedText")) 
@@ -44,7 +45,7 @@ const AnimatedLines = dynamic (() => import("./AnimatedLines"))
 
 
 
-
+    
 const playfair = Playfair_Display({ 
   weight: ["400", "700"],
   subsets: ["latin"],
@@ -120,9 +121,11 @@ interface PortfolioPagePresentationProps {
   handleNextSkill,
   handlePreviousSkill,
   }) => {
+
     const { scrollYProgress } = useScroll()
     const controls = useAnimation()
     const textControls = useAnimation()
+    const [showCube, setShowCube] = useState(false);
   
     const fadeInUp = {
       hidden: { opacity: 0, y: 20 },
@@ -153,8 +156,15 @@ interface PortfolioPagePresentationProps {
       { value: "pages", label: "Páginas" }
     ];
     const [activeTab, setActiveTab] = useState(tabs[0].value);
-    const [showCube, setShowCube] = useState(false);
- 
+    
+    useEffect(() => {
+      if (activeSection !== 'home') {
+        setShowCube(false);
+      }
+    }, [activeSection]);
+
+
+    
   return (
     <div className="relative flex flex-col min-h-screen overflow-hidden">
           <motion.div
@@ -277,19 +287,19 @@ interface PortfolioPagePresentationProps {
 >
   {showCube ? (
     <>
-      <span className="mr-2">off</span>
-      <span className="inline-block">&#x25B2;</span>
+      <span className="mr-2">on</span>
+      <span className="inline-block">&#x25BC;</span>
     </>
   ) : (
     <>
-      <span className="mr-2">on</span>
-      <span className="inline-block">&#x25BC;</span>
+      <span className="mr-2">off</span>
+      <span className="inline-block">&#x25B2;</span>
     </>
   )}
 </Button>
 
 <AnimatePresence>
-  {showCube && (
+  {showCube && activeSection === 'home' && (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -298,7 +308,7 @@ interface PortfolioPagePresentationProps {
       className="fixed inset-0 z-1 flex items-center justify-center"
       style={{ isolation: 'isolate' }}
     >
-      <RotatingCube_2 />
+     {typeof window !== 'undefined' && <RotatingCube_2 />}
     </motion.div>
   )}
 </AnimatePresence>
