@@ -32,7 +32,6 @@ const RotatingCube_2 = dynamic(() => import('./RotatingCube_2'), {
   loading: () => <p>Cargando...</p>
 });
 
-const RotatingCube = dynamic(() => import("./RotatingCube"), { ssr: false })
 const SkillModal = dynamic(() => import("./SkillModal"))
 const AnimatedText = dynamic (() => import("./AnimatedText")) 
 const AnimatedTitle = dynamic (() => import("./AnimatedTitle")) 
