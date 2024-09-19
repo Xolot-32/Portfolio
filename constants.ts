@@ -55,13 +55,13 @@ export const SKILLS = [
 ];
 
 export const TECHNOLOGIES = [
-  { name: 'React', icon: '/icons/react.png' },
-  { name: 'TypeScript', icon: '/icons/typescript.png' },
+  { name: 'React', icon: '/icons/Rea_logo.png' },
+  { name: 'TypeSscript', icon: '/icons/TS_logo.png' },
   { name: 'Node.js', icon: '/icons/nodejs.png' },
-  { name: 'Adobe_Premiere_Pro', icon: '/icons/Adobe_Premiere_Pro.png' },
-  { name: 'After_Effects', icon: '/icons/After_Effects.png' },
+  { name: 'Adobe Premiere Pro', icon: '/icons/Adobe_Premiere_Pro.png' },
+  { name: 'After Effects', icon: '/icons/After_Effects.png' },
   { name: 'MySQL', icon: '/icons/MySQL.png' },
-  { name: 'p5_JS', icon: '/icons/p5_JS.png' },
+  { name: 'p5.js', icon: '/icons/p5_JS.png' },
   { name: 'Processing', icon: '/icons/Processing.png' },
   { name: 'Apple', icon: '/icons/Apple.png' },
   { name: 'Audition', icon: '/icons/audition.png' },

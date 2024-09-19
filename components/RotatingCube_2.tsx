@@ -5,6 +5,9 @@ import * as THREE from 'three'
 import { motion } from 'framer-motion-3d'
 import { GroupProps } from '@react-three/fiber'
 
+
+
+
 interface SideProps {
   rotation: [number, number, number];
   bg: string;
@@ -22,6 +25,11 @@ function Side({ rotation, bg, children, index }: SideProps) {
       mesh.current.rotation.y -= delta * 0.3
     }
   })
+
+
+
+
+
 
   return (
     <MeshPortalMaterial attach={`material-${index}`}>
@@ -49,14 +57,18 @@ function Side({ rotation, bg, children, index }: SideProps) {
 function RotatingBox() {
   const group = useRef<GroupProps>(null)
   const [visible, setVisible] = useState(false)
+  const [animationStarted, setAnimationStarted] = useState(false)
   
   useEffect(() => {
-    const timer = setTimeout(() => setVisible(true), 500)
+    const timer = setTimeout(() => {
+      setVisible(true)
+      setAnimationStarted(true)
+    }, 500)
     return () => clearTimeout(timer)
   }, [])
 
   useFrame((state, delta) => {
-    if (group.current && group.current.rotation instanceof THREE.Euler) {
+    if (group.current && group.current.rotation instanceof THREE.Euler && animationStarted) {
       group.current.rotation.y += delta * 0.2
       group.current.rotation.x -= delta * 0.1
     }
@@ -69,7 +81,7 @@ function RotatingBox() {
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: visible ? 1 : 0, opacity: visible ? 1 : 0 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
-        position={[0, 0.2, 0]}
+        position={[0, 0.5, 1]}
       >
         <mesh castShadow receiveShadow>
           <boxGeometry args={[1.5, 1.5, 1.5]} />
@@ -109,11 +121,10 @@ function RotatingBox() {
     return (
       <div className={className}>
         <Canvas
-          shadows
-          camera={{ position: [6, 0, 6], fov: 25 }}
+          camera={{ position: [0, 0, 8], fov: 30 }}
           style={{
-            position: 'absolute',
-            top: -60,
+            position: 'fixed',
+            top: 0,
             left: 0,
             width: '100%',
             height: '100%',
@@ -122,20 +133,8 @@ function RotatingBox() {
         >
        
           <fog attach="fog" args={['#000000', 5, 18]} />
-          <ambientLight intensity={0.5} />
-          <directionalLight 
-            castShadow 
-            position={[10, 10, 10]} 
-            intensity={1} 
-            shadow-mapSize-width={2048}
-            shadow-mapSize-height={2048}
-            shadow-camera-near={0.5}
-            shadow-camera-far={50}
-            shadow-camera-left={-10}
-            shadow-camera-right={10}
-            shadow-camera-top={10}
-            shadow-camera-bottom={-10}
-          />
+   
+         
           <RotatingBox />
           <OrbitControls 
             enableZoom={false}

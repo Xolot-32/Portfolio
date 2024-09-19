@@ -40,21 +40,8 @@ const SkillModal: React.FC<SkillModalProps> = ({ skill, onClose, onNext, onPrevi
       >
         <div className="relative">
           <motion.div
-            className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-gray-500 to-blue-200 rounded-lg blur opacity-90"
-            animate={{
-              background: [
-                "linear-gradient(0deg, #031191, #36409e, #6d708f)",
-                "linear-gradient(90deg, #031191, #36409e, #6d708f)",
-                "linear-gradient(180deg, #031191, #36409e, #6d708f)",
-                "linear-gradient(270deg, #031191, #36409e, #6d708f)",
-                "linear-gradient(360deg, #031191, #36409e, #6d708f)",
-              ],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 4,
-              ease: "linear",
-            }}
+            className="absolute -inset-0.5 bg-gradient-to-b from-gray-600 via-gray-400 to-blue-500 rounded-lg blur opacity-90"
+            
           />
           <Card className="relative text-white shadow-xl border-hidden overflow-hidden">
             <Image

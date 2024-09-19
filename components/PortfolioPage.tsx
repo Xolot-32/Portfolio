@@ -12,6 +12,8 @@ const MemoizedPortfolioPagePresentation = memo(PortfolioPagePresentation);
 
 
 
+
+
 const PortfolioPage: React.FC = () => {
   const [activeSection, setActiveSection] = useState("")
   const [scrollY, setScrollY] = useState(0)

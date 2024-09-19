@@ -21,19 +21,7 @@ const AnimatedLogo: React.FC = () => {
           stroke="#000000"
           strokeWidth="1"
           strokeLinejoin="round"
-          variants={{
-            hidden: { pathLength: 0, opacity: 0 },
-            visible: { 
-              pathLength: 1, 
-              opacity: 1,
-              transition: { 
-                duration: 2, 
-                ease: "easeInOut",
-                repeat: Infinity,
-                repeatType: "reverse"
-              }
-            }
-          }}
+       
         />
         
         {/* Parte izquierda (gris) */}
@@ -43,20 +31,7 @@ const AnimatedLogo: React.FC = () => {
           stroke="#000000"
           strokeWidth="1"
           strokeLinejoin="round"
-          variants={{
-            hidden: { pathLength: 0, opacity: 0 },
-            visible: { 
-              pathLength: 1, 
-              opacity: 1,
-              transition: { 
-                duration: 2, 
-                ease: "easeInOut",
-                delay: 0.5,
-                repeat: Infinity,
-                repeatType: "reverse"
-              }
-            }
-          }}
+         
         />
         
         {/* Parte inferior (negra) */}
@@ -66,20 +41,7 @@ const AnimatedLogo: React.FC = () => {
           stroke="#000000"
           strokeWidth="1"
           strokeLinejoin="round"
-          variants={{
-            hidden: { pathLength: 0, opacity: 0 },
-            visible: { 
-              pathLength: 1, 
-              opacity: 1,
-              transition: { 
-                duration: 2, 
-                ease: "easeInOut",
-                delay: 1,
-                repeat: Infinity,
-                repeatType: "reverse"
-              }
-            }
-          }}
+       
         />
       </g>
       </motion.svg>

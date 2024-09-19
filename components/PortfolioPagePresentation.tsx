@@ -27,9 +27,12 @@ import MusicPlayer from "./MusicPlayer";
 // Importaciones dinámicas para componentes pesados
 const InteractiveBackground_2 = dynamic(() => import("./InteractiveBackground_2"), { ssr: false })
 const TechCarousel = dynamic(() => import("./TechCarousel"), { ssr: false })
-const RotatingCube_2 = dynamic(() => import("./RotatingCube_2"), { ssr: false })
+const RotatingCube_2 = dynamic(() => import('./RotatingCube_2'), {
+  ssr: false,
+  loading: () => <p>Cargando...</p>
+});
+const RotatingCube = dynamic(() => import("./RotatingCube"), { ssr: false })
 const SkillModal = dynamic(() => import("./SkillModal"))
-const SectionDivider = dynamic (() => import("./SectionDivider")) 
 const AnimatedText = dynamic (() => import("./AnimatedText")) 
 const AnimatedTitle = dynamic (() => import("./AnimatedTitle")) 
 const AnimatedSection = dynamic (() => import("./AnimatedSection"))
@@ -53,14 +56,14 @@ const montserrat = Montserrat({ subsets: ["latin"], display: "swap" })
 const ScrollIndicator = () => {
   const handleClick = () => {
     window.scrollBy({
-      top: window.innerHeight, // Desplazarse hacia abajo una pantalla completa
-      behavior: 'smooth', // Desplazamiento suave
+      top: window.innerHeight, 
+      behavior: 'smooth', 
     });
   };
 
   return (
     <motion.div
-      className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer" // Agrega cursor-pointer para indicar que es clickable
+      className="absolute bottom-10 p-6  transform -translate-x-1/2 cursor-pointer" 
       onClick={handleClick} // Manejador de clic
       animate={{
         y: [0, 10, 0],
@@ -150,7 +153,7 @@ interface PortfolioPagePresentationProps {
       { value: "pages", label: "Páginas" }
     ];
     const [activeTab, setActiveTab] = useState(tabs[0].value);
-  
+    const [showCube, setShowCube] = useState(false);
  
   return (
     <div className="relative flex flex-col min-h-screen overflow-hidden">
@@ -229,7 +232,7 @@ interface PortfolioPagePresentationProps {
 
         <motion.section 
   id="home"
-  className="w-full min-h-screen flex items-center backdrop-blur-sm justify-center py-12 md:py-24 lg:py-32 relative overflow-hidden"
+  className=" relative w-full min-h-screen flex items-center backdrop-blur-sm justify-center py-12 md:py-24 lg:py-32 relative overflow-hidden"
   aria-labelledby="home-title"
   initial="hidden"
   whileInView="visible"
@@ -265,11 +268,45 @@ interface PortfolioPagePresentationProps {
     y: { duration: 1.2, ease: "easeOut" }
   }}
 >
-  <motion.div
-  >
-    <RotatingCube_2  />
-  </motion.div>
-</motion.div>
+
+
+<div className="relative">
+<Button
+  onClick={() => setShowCube(!showCube)}
+  className="absolute top-16 right-12 z-10 opacity-70 bg-navy-900 hover:bg-navy-800 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-navy-800 focus:ring-opacity-50"
+>
+  {showCube ? (
+    <>
+      <span className="mr-2">off</span>
+      <span className="inline-block">&#x25B2;</span>
+    </>
+  ) : (
+    <>
+      <span className="mr-2">on</span>
+      <span className="inline-block">&#x25BC;</span>
+    </>
+  )}
+</Button>
+
+<AnimatePresence>
+  {showCube && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="fixed inset-0 z-1 flex items-center justify-center"
+      style={{ isolation: 'isolate' }}
+    >
+      <RotatingCube_2 />
+    </motion.div>
+  )}
+</AnimatePresence>
+</div>
+
+ </motion.div>
+      {/* Resto del contenido de tu componente principal */}
+   
   
   <motion.div 
     className="absolute top-10 left-8 text-4xl"
@@ -289,10 +326,10 @@ interface PortfolioPagePresentationProps {
  
  
   <motion.div 
-    className="absolute top-80 left-8 text-4xl font-bold text-white opacity-60"
+    className="absolute top-40 left-8 text-4xl font-bold text-white opacity-70"
     initial={{ opacity: 0, x: -40 }}
     animate={{ opacity: 0.5, x: 0 }}
-    transition={{ delay: 1 }}
+    transition={{ delay: 3 }}
   >
    
    <AnimatedText 
@@ -320,7 +357,7 @@ interface PortfolioPagePresentationProps {
           >
             <div className="text-center p-1">
               <motion.p
-                className={`${montserrat.className} text-gray-200 text-sm md:text-base uppercase tracking-widest mb-2`}
+                className={`${montserrat.className} text-gray-200 text-sm md:text-base uppercase tracking-widest mb-4`}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
@@ -328,7 +365,7 @@ interface PortfolioPagePresentationProps {
                 Multimedia Engineer
               </motion.p>
               <motion.h1 
-                className={`${playfair.className} uppercase mx-auto text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white`}
+                className={`${playfair.className} uppercase mb-8 mx-auto text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white`}
                 style={{ 
                   WebkitTextStroke: "1px rgba(255,255,255,0.1)",
                   textShadow: "0 0 20px rgba(255,255,255,0.5)"
@@ -340,7 +377,7 @@ interface PortfolioPagePresentationProps {
                 Daniel Xolot
               </motion.h1>
               <motion.p 
-                className={`${montserrat.className} uppercase mx-auto max-w-[700px] text-yellow-400 text-sm md:text-base tracking-widest mt-4`}
+                className={`${montserrat.className} uppercase mx-auto max-w-[700px] text-yellow-400 text-sm md:text-base tracking-widest mb-32 mt-3`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9 }}
@@ -349,7 +386,7 @@ interface PortfolioPagePresentationProps {
                 
               </motion.p>
               <motion.div 
-                className="mt-8 flex space-x-4 justify-center flex-wrap"
+                className="flex space-x-4 justify-center flex-wrap"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.1 }}
@@ -395,11 +432,6 @@ interface PortfolioPagePresentationProps {
     )}
   </AnimatePresence>
 </motion.section>
-
-<SectionDivider
- filter="invert(90%) contrast(200%) brightness(100%) hue-rotate(66deg)" />
-
-
 
 
 <motion.section
@@ -500,9 +532,6 @@ interface PortfolioPagePresentationProps {
       </AnimatePresence>
 
 
-      <SectionDivider
- filter="invert(90%) contrast(200%) brightness(100%) hue-rotate(66deg)" />
-
 
 
 <motion.section
@@ -595,7 +624,6 @@ interface PortfolioPagePresentationProps {
         </Tabs>
       </div>
     </motion.section>
-<SectionDivider filter="invert(90%) contrast(200%) brightness(100%) hue-rotate(66deg)" />
 
         <motion.section
          id="technologies"
@@ -615,7 +643,7 @@ interface PortfolioPagePresentationProps {
          <AnimatedTitle
          text="Tecnologías"
          variant="fade"
-         className={`${playfair.className} text-3xl text-gray-300 opacity-80 font-bold uppercase tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center text-white`}
+         className={`${playfair.className} text-3xl text-gray-300 opacity-80 font-bold uppercase tracking-tighter sm:text-4xl md:text-5xl mb-4 text-center text-white`}
         />
        </AnimatedSection>
        
@@ -625,8 +653,7 @@ interface PortfolioPagePresentationProps {
         </div>
       </motion.section>
       
-      <SectionDivider filter="invert(90%) contrast(200%) brightness(100%) hue-rotate(66deg)" />
-      
+    
 
         <motion.section
   id="contact"

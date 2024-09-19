@@ -59,7 +59,7 @@ export default function TechGrid({ technologies }: TechGridProps) {
   )
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto px-4 py-8">
+    <div className="relative w-full max-w-4xl mx-auto px-4 py-2">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentPage}
@@ -67,12 +67,12 @@ export default function TechGrid({ technologies }: TechGridProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2"
         >
           {visibleTechnologies.map((tech) => (
             <motion.div
               key={tech.name}
-              className="flex flex-col items-center justify-center p-4 bg-navy-800 rounded-lg shadow-md"
+              className="flex flex-col items-center justify-center p-3 bg-navy-800 rounded-lg shadow-md"
               layout
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 0.8, scale: 1 }}
