@@ -51,7 +51,7 @@ export const portfolioItems = {
     
     { 
       title: 'Voxel Dreams Studio', 
-      description: 'Diseño sono y animación', 
+      description: 'Diseño sonoro y animación', 
       videoId: '1010349260', 
       logoSrc: '/xolot.png', 
     },

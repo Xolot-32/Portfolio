@@ -26,7 +26,7 @@ const AboutModal: React.FC<AboutModalProps> = ({ onClose }) => {
         className="w-full max-w-3xl bg-gradient-to-br from-navy-900 to-navy-950 rounded-2xl shadow-2xl overflow-hidden border border-teal-500/20"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative p-4">
+        <div className="relative p-1">
           <Button
             className="absolute top-4 right-4 p-2 bg-transparent hover:bg-blue-600/20 text-yellow-300"
             variant="ghost"

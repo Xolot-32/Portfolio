@@ -282,7 +282,7 @@ interface PortfolioPagePresentationProps {
 <div className="relative">
 <Button
   onClick={() => setShowCube(!showCube)}
-  className="absolute top-16 right-12 z-10 opacity-70 bg-navy-900 hover:bg-navy-800 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-navy-800 focus:ring-opacity-50"
+  className="absolute top-8 right-12 z-10 opacity-70 bg-navy-900 hover:bg-navy-800 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-navy-800 focus:ring-opacity-50"
 >
   {showCube ? (
     <>
@@ -383,7 +383,7 @@ interface PortfolioPagePresentationProps {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
               >
-                Daniel Xolot
+                Daniel Durán
               </motion.h1>
               <motion.p 
                 className={`${montserrat.className} uppercase mx-auto max-w-[700px] text-yellow-400 text-sm md:text-base tracking-widest mb-32 mt-3`}
@@ -458,19 +458,16 @@ interface PortfolioPagePresentationProps {
         >
           
         <div className="container mx-auto px-8 md:px-6">
-       
-        
+      
         <AnimatedSection id="skills">
         <AnimatedTitle
         text="S k i l l s"
         variant="fade"
         className={`${playfair.className} text-3xl text-gray-300 opacity-80 font-bold uppercase tracking-tighter sm:text-4xl md:text-5xl mb-12 text-center text-white`}
-     
-        
+         
       />
       </AnimatedSection>
      
-
           <motion.div
             className="fixedcols grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6"
             variants={containerVariants}
